@@ -1,4 +1,5 @@
-var BOSH_SERVICE = "http://localhost:7070/http-bind/";
+var BOSH_SERVICE = "";
+var JID = "";
 
 var Peek = {
     connection : null,
@@ -110,10 +111,7 @@ var Peek = {
 };
 
 $(document).ready(function (){
-    $(document).trigger('connect', {
-        jid: "test@sylruesoe",
-        password: "test"
-    });
+    $(document).trigger('connect', {});
 });
 
 $(document).on('connect', function (ev, data) {
@@ -129,7 +127,7 @@ $(document).on('connect', function (ev, data) {
         Peek.show_traffic(body, 'outgoing');
     }
 
-    conn.connect(data.jid, data.password, function (status){
+    conn.connect(JID, undefined, function (status){
         // Check for connected Event
         if(status === Strophe.Status.CONNECTED){
             console.log("Connected");
